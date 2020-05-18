@@ -65,7 +65,10 @@ class setupGenericJsonServiceTest(APIView):
         cursor.execute("create table grocery_list (user TEXT, item TEXT)")
         conn.commit()
 
-        cursor.execute("""insert into grocery_list values('stephan', '{"buyGroceryItems": [], "boughtGroceryItems":[]}""");
+        bobo = {'buyGroceryItems': [], 'boughtGroceryItems':[]}
+        t = (bobo,)
+
+        cursor.execute("insert into grocery_list values('stephan', ?)", t);
         conn.commit()
 
         cursor.close()
