@@ -9,6 +9,7 @@ class genericJsonServiceTest(APIView):
     def get(self, request):
 
         # http://localhost:8000/json?user=stephan&table=grocery_list
+        # http://localhost:8000/setup
 
         requestQueryParams = request.query_params
         requestTable = requestQueryParams["table"]
@@ -62,12 +63,11 @@ class setupGenericJsonServiceTest(APIView):
         conn = sqlite3.connect('db.sqlite3')
         cursor = conn.cursor()
 
-        cursor.execute("create table grocery_list (user TEXT, item TEXT)")
+        cursor.execute("create table if not exists grocery_list (user TEXT, item TEXT)")
         conn.commit()
 
-        bobo = {'buyGroceryItems': [], 'boughtGroceryItems':[]}
+        bobo = "{'buyGroceryItems': [], 'boughtGroceryItems':[]}"
         t = (bobo,)
-
         cursor.execute("insert into grocery_list values('stephan', ?)", t);
         conn.commit()
 
