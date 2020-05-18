@@ -21,4 +21,5 @@ from GenericJsonService import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('json/', views.genericJsonServiceTest.as_view()),
+    path('setup/', views.setupGenericJsonServiceTest.as_view()),
 ]

@@ -55,3 +55,18 @@ class genericJsonServiceTest(APIView):
 
         return JsonResponse(json.loads("""{ "op": "post" }"""), safe=False)
 
+class setupGenericJsonServiceTest(APIView):
+
+    def get(self, request):
+
+        conn = sqlite3.connect('db.sqlite3')
+        cursor = conn.cursor()
+
+        cursor.execute("create table grocery_list (user TEXT, item TEXT)")
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return JsonResponse(json.loads("""{ "op": "getsetup" }"""), safe=False)
+

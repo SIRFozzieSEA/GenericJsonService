@@ -1,16 +1,15 @@
 # Notes
 sudo apt-get update && sudo apt-get dist-upgrade
-sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3 libpq-dev
-sudo pip3 install virtualenv
+sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3 libpq-dev sqlite
 
 # Make Virtual Environment in Root of Project
+sudo pip3 install virtualenv
 virtualenv env
 source env/bin/activate
 pip3 install django
 pip3 install djangorestframework
-pip3 install psycopg2
-pip3 install sqlalchemy
-pip3 install sqlalchemy-redshift
+pip3 install django-cors-headers
+
 nano GenericJsonService/settings.py
 Add - ALLOWED_HOSTS = ["server_domain_or_IP"]
 Add - STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -19,8 +18,7 @@ python3 manage.py migrate
 python3 manage.py createsuperuser
 python3 manage.py collectstatic
 python3 manage.py runserver 0.0.0.0:8000
-py manage.py runserver localhost:8000
-
+python3 manage.py runserver ec2-3-84-78-247.compute-1.amazonaws.com:8000
 deactivate
 
 # Apache2 Stuffs
