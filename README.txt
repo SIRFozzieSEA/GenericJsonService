@@ -23,8 +23,9 @@ deactivate
 
 # Apache2 Stuffs
 cd /etc/apache2/sites-available/
-sudo nano pythonapi.conf
-sudo a2ensite pythonapi.conf
+sudo rm 000-default.conf
+sudo nano restapi.conf
+sudo a2ensite restapi.conf
 
 <VirtualHost *:80>
 
@@ -37,7 +38,7 @@ sudo a2ensite pythonapi.conf
                 Require all granted
         </Directory>
 
-        <Directory /home/ubuntu/GenericJsonService>
+        <Directory /home/ubuntu/GenericJsonService/GenericJsonService>
                 <Files wsgi.py>
                         Require all granted
                 </Files>
@@ -45,7 +46,7 @@ sudo a2ensite pythonapi.conf
 
         WSGIDaemonProcess GenericJsonService python-path=/home/ubuntu/GenericJsonService python-home=/home/ubuntu/GenericJsonService/env
         WSGIProcessGroup GenericJsonService
-        WSGIScriptAlias / /home/ubuntu/GenericJsonService/wsgi.py
+        WSGIScriptAlias / /home/ubuntu/GenericJsonService/GenericJsonService/wsgi.py
 </VirtualHost>
 
 chmod 664 /home/ubuntu/GenericJsonService/db.sqlite3

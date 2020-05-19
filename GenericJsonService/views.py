@@ -15,7 +15,7 @@ class genericJsonServiceTest(APIView):
         requestTable = requestQueryParams["table"]
         requestUser = requestQueryParams["user"]
 
-        conn = sqlite3.connect('db.sqlite3')
+        conn = sqlite3.connect('/home/ubuntu/GenericJsonService/db.sqlite3')
         cursor = conn.cursor()
         t = (requestUser,)
         cursor.execute("SELECT * FROM " + requestTable + " WHERE USER=?", t)
@@ -35,7 +35,7 @@ class genericJsonServiceTest(APIView):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
 
-        conn = sqlite3.connect('db.sqlite3')
+        conn = sqlite3.connect('/home/ubuntu/GenericJsonService/db.sqlite3')
         cursor = conn.cursor()
 
         requestTable = body["tableName"]
@@ -60,7 +60,7 @@ class setupGenericJsonServiceTest(APIView):
 
     def get(self, request):
 
-        conn = sqlite3.connect('db.sqlite3')
+        conn = sqlite3.connect('/home/ubuntu/GenericJsonService/db.sqlite3')
         cursor = conn.cursor()
 
         cursor.execute("create table if not exists grocery_list (user TEXT, item TEXT)")
