@@ -76,3 +76,39 @@ class setupGenericJsonServiceTest(APIView):
 
         return JsonResponse(json.loads("""{ "op": "getsetup" }"""), safe=False)
 
+    # def connect_postgres(self, myColumns, myQuery):
+    #     url = 'postgresql://{}:{}@{}:{}/{}'
+    #     url = url.format(POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DATABASE)
+    #     engine = sa.create_engine(url, client_encoding='utf8')
+    #     session = sessionmaker()
+    #     session.configure(bind=engine)
+    #     mySession = session()
+    #     json_response = self.make_json_response(mySession, myColumns, myQuery)
+    #     return json_response
+    #
+    # def make_json_response(self, mysession, myColumns, myQuery):
+    #     resultset = mysession.execute(myQuery)
+    #     all_results = resultset.fetchall()
+    #     write_record_comma = False
+    #
+    #     buffer = StringIO()
+    #     buffer.write('[')
+    #
+    #     for row in all_results:
+    #         if write_record_comma:
+    #             buffer.write(',')
+    #         buffer.write('{')
+    #         x = 0
+    #         for singleColumn in row:
+    #             buffer.write(self.quote_char + myColumns[x] + self.quote_char + ": " + self.quote_char + str(
+    #                 singleColumn) + self.quote_char)
+    #             if x < len(myColumns) - 1:
+    #                 buffer.write(", ")
+    #             x = x + 1
+    #         buffer.write('}')
+    #         write_record_comma = True
+    #
+    #     buffer.write(']')
+    #     mysession.close()
+    #     return buffer.getvalue()
+
